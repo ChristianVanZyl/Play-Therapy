@@ -1,9 +1,7 @@
 body {
-    background-color: papayawhip;
+    background-color: #fff;
     margin: 0;
 }
-
-
 
 .navbar{
 	padding-left: 20px;
@@ -55,45 +53,6 @@ body {
 	border-color: #596e79;
 }
 
-
-.footer {
-  background-color: #596e79;
-  color: white;
-  font-family: 'Noto Sans', sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-}
-
-.footherThead{
-  font-weight: 700;
-  font-size: 18px;
-  padding-bottom: 25px;
-  padding: 15px;
-}
-
-.paddingBetweenColsTD
-{
-    padding: 0 15px;
-}
-
-.payfastImg{
-	display: inline-block;
-  margin-left: 250px;
-  margin-bottom: 15px;
-}
-
-.copyrightText{
-  text-align: center;
-  font-weight: 700;
-  font-size: 12px;
-  margin-top: 20px;
-}
-
-
-.footerTable{
-	width: 100%;
-}
-
 .container-fluid {
     /* We use !important to override the padding setting that Bootstrap already put for the container-fluid class. */
     padding-left: 0 !important;
@@ -105,8 +64,6 @@ body {
   margin-left: 0 !important;
   margin-right:0 !important;
 }
-
-
 
 .subscript1{
   color: #596e79;
@@ -135,6 +92,7 @@ body {
 #searchButton{
   background-color: #596e79;
   color: white;
+
 }
 
 #searchBar {
@@ -142,20 +100,61 @@ body {
   margin: auto;
 }
 
+#browseLinksRow {
+  margin-top: 30px;
+}
+
+#browseLinksP{
+  margin-left: 5px;
+  margin-right: 5px;
+
+}
+
+#browseButton {
+
+  font-size: 14px;
+  font-style: italic;
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 400;
+  background-color:  #fff;
+  border-color:  #fff;
+  color: #596e79;
+}
+
+#cardBox {
+  text-align: center;
+  margin-top: 25px;
+}
 
 #cardContainer {
-  padding: 0;
+
+  margin-bottom: 50px;
+}
+
+#footerContainer{
+  background-color: #596e79;
+}
+#footerTable{
+  font-size: 14px;
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 700;
+  color: white;
+}
+.copyrightText{
+  text-align: center;
+  font-weight: 700;
+  font-size: 12px;
+    font-family: 'Noto Sans', sans-serif;
+    background-color:  #596e79;
+    color: white;
+    margin-bottom: 0;
+
 }
 
 
-
-
-
-
-
-
-
-
+#socialMediaIcons {
+  color: white;
+}
 
 
 /*mobile */
@@ -207,14 +206,79 @@ body {
   .nav-link {
     font-size: 10px;
   }
+
+  #browseLinksRow {
+    margin-top: 10px;
+  }
+
+
+  #browseButton {
+
+    font-size: 10px;
+    font-style: italic;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 400;
+    background-color:  #596e79;
+    border-color:  #596e79;
+    color: white;
+  }
+
+  #cardBox {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+
+  #footerTable{
+    font-size: 4px;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 400;
+
+
 }
+  #payfastImg{
+    width: 15%;
+    height: auto;
+  }
 
-/*ipad */
-@media (max-width: 768px) {
 
-}
+.table thead th{
+    padding-left: 3px;
+    padding-right:3px ;
+    padding-top:3px ;
+    padding-bottom:3px ;
 
-/*laptop */
-@media (max-width: 1440px) {
+  }
+
+  .table td, .table th {
+    padding-left: 3px;
+    padding-right:3px ;
+    padding-top:3px ;
+    padding-bottom:3px ;
+
+  }
+
+
+  #socialMediaIcons {
+
+
+  }
+
+  #socialMediaImg{
+      font-size: 4px;
+      padding: 2px!important;
+  }
+
+  #cardContainer {
+    margin-bottom: 10px;
+  }
+
+  .copyrightText{
+    font-size: 6px;
+  }
+
+  #footerRow{
+    padding-top: 0 !important;
+  }
 
 }

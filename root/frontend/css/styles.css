@@ -1,0 +1,220 @@
+body {
+    background-color: papayawhip;
+    margin: 0;
+}
+
+
+
+.navbar{
+	padding-left: 20px;
+	padding-right: 10px;
+  background-color: white;
+}
+
+.navbar-brand{
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 700;
+  text-align: center;
+  color: #596e79;
+}
+
+.navbar-brand span {
+  font-family: 'Noto Sans', sans-serif;
+	font-size:28px;
+	line-height:1.2;
+	font-weight: 700;
+	display:inline-block;
+	vertical-align:middle;
+	padding:0 0 0 15px;
+}
+.navbar-brand b {
+	display:block;
+  font-style: italic;
+	font-size:50%;
+	line-height:2;
+}
+
+.nav-link {
+  color: #596e79;
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+
+}
+
+.nav-link:hover {
+  color: #434e57;
+}
+
+.navbar-brand:hover {
+  color: #6d808f;
+
+}
+
+.navbar-toggler {
+	border-color: #596e79;
+}
+
+
+.footer {
+  background-color: #596e79;
+  color: white;
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.footherThead{
+  font-weight: 700;
+  font-size: 18px;
+  padding-bottom: 25px;
+  padding: 15px;
+}
+
+.paddingBetweenColsTD
+{
+    padding: 0 15px;
+}
+
+.payfastImg{
+	display: inline-block;
+  margin-left: 250px;
+  margin-bottom: 15px;
+}
+
+.copyrightText{
+  text-align: center;
+  font-weight: 700;
+  font-size: 12px;
+  margin-top: 20px;
+}
+
+
+.footerTable{
+	width: 100%;
+}
+
+.container-fluid {
+    /* We use !important to override the padding setting that Bootstrap already put for the container-fluid class. */
+    padding-left: 0 !important;
+    padding-right:0 !important;
+}
+
+.row {
+  /* We use !important to override the padding setting that Bootstrap already put for the row class. */
+  margin-left: 0 !important;
+  margin-right:0 !important;
+}
+
+
+
+.subscript1{
+  color: #596e79;
+  font-style: italic;
+  font-size: 20px;
+  text-align: center;
+}
+
+.subscript2{
+  color: #596e79;
+  font-style: italic;
+  font-size: 14px;
+  text-align: center;
+
+}
+
+#homeContainer {
+  padding: 20%;
+
+  background-image: url("C:/xampp/htdocs/Playtherapy/root/frontend/images/ted2.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+#searchButton{
+  background-color: #596e79;
+  color: white;
+}
+
+#searchBar {
+  width: 400px;
+  margin: auto;
+}
+
+
+#cardContainer {
+  padding: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*mobile */
+@media (max-width: 575.98px){
+
+
+  #homeContainer {
+    padding: 20%;
+  }
+
+  #searchBar {
+    width: 200px;
+    padding-top: 20px;
+  }
+
+  .subscript1{
+    color: #596e79;
+    font-style: italic;
+    font-size: 10px;
+    text-align: center;
+  }
+
+  .subscript2{
+    color: #596e79;
+    font-style: italic;
+    font-size: 8px;
+    text-align: center;
+  }
+
+  #playLogo{
+		width: 25%;
+		height: 10%;
+	}
+	.navbar-brand{
+		margin: 0 4px 0 0;
+		padding: 0;
+		text-align: left;
+		width: 300px;
+	}
+	.navbar-toggler{
+	padding: 2px 6px 2px 6px;
+	width: 30px;
+	height: 20px;
+	}
+	.navbar-brand span {
+	  font-family: 'Noto Sans', sans-serif;
+		font-size:12px;
+	}
+  .nav-link {
+    font-size: 10px;
+  }
+}
+
+/*ipad */
+@media (max-width: 768px) {
+
+}
+
+/*laptop */
+@media (max-width: 1440px) {
+
+}

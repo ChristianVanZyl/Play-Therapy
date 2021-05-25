@@ -21,7 +21,6 @@
 </head>
 
 <body>
-
   <nav class="navbar navbar-expand-lg">
     <a class="navbar-brand mx-auto" href="../index.php"><img id="playLogo" src="../images/logo.png" alt="playLogo" width="170" height="100" /><span>PLAY THERAPY TOYS <b>by Lenka De Villiers-Van Zyl</b></span>
     </a>
@@ -32,67 +31,73 @@
     <!-- Main column where content goes  -->
     <div class="main">
       <!--Login content -->
+
       <div class="container-fluid" id="signUpPage">
         <div class="container-fluid" id="signupMainContainer">
           <h1 id="signupHeading">Sign Up</h1>
           <div class="row justify-content-center">
-            <div class="col-sm-3"></div>
+            <div class="col-sm-4"></div>
             <div class="col-sm-6" id="emailShorten">
-              <form>
+              <form action="signUpScreen.php" method="post" id="form">
                 <div class="form-row">
-                  <div class="form-group col-md-6 justify-content-center">
-                    <label for="inputEmail">Email:</label>
+                  <div class="form-group col-6-md">
+                    <label class="label" for="inputEmail">Email:</label>
                     <input type="email" class="form-control" id="inputEmail" placeholder="Enter email address" />
+                    <div class="invalid-feedback">Please enter a valid email address.</div>
                   </div>
-                  <div class="form-group col-md-6">
-                    <label for="inputPassword" placeholder="Enter password">Password:</label>
+                  <div class="form-group col-6-md">
+                    <label class="label" for="inputPassword">Password:</label>
                     <input type="password" class="form-control" id="inputPassword" placeholder="Enter password" />
+                    <div class="invalid-feedback">Please enter a password with at least 8 characters, <br />1 digit and 1 uppercase, lowercase & special character.</div>
                   </div>
                 </div>
                 <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="inputStreet">Street:</label>
-                    <input type="text" class="form-control" id="inputStreet" placeholder="Enter street" />
+                  <div class="form-group col-6-md">
+                    <label class="label" for="inputStreet">Street:</label>
+                    <input name="street" type="text" class="form-control" id="inputStreet" placeholder="Enter street" />
+                    <div class="invalid-feedback">Please enter a street name.</div>
                   </div>
-                  <div class="form-group col-md-6">
-                    <label for="inputCity">City:</label>
-                    <input type="text" class="form-control" id="inputCity" placeholder="Enter city" />
+                  <div class="form-group col-6-md">
+                    <label class="label" for="inputCity">City:</label>
+                    <input name="city" type="text" class="form-control" id="inputCity" placeholder="Enter city" />
+                    <div class="invalid-feedback">Please enter a city name.</div>
                   </div>
                 </div>
                 <div class="form-row">
-                  <div class="form-group col-md-6 pb-4">
-                    <label for="inputProvince">Province:</label>
-                    <select id="inputProvince" class="form-control">
-                      <option selected>Choose...</option>
-                      <option>Eastern Cape</option>
-                      <option>Free State</option>
-                      <option>Gauteng</option>
-                      <option>KwaZulu-Natal</option>
-                      <option>Limpopo</option>
-                      <option>Mpumalanga</option>
-                      <option>North West</option>
-                      <option>Northern Cape</option>
-                      <option>Western Cape</option>
+                  <div class="form-group col-6-md pb-4">
+                    <label class="label" for="inputProvince">Province:</label>
+                    <select name="province" id="inputProvince" class="form-control">
+                      <option disabled selected>Choose...</option>
+                      <option value="Eastern Cape">Eastern Cape</option>
+                      <option value="Free State">Free State</option>
+                      <option value="Gauteng">Gauteng</option>
+                      <option value="KwaZulu-Natal">KwaZulu-Natal</option>
+                      <option value="Limpopo">Limpopo</option>
+                      <option value="Mpumalanga">Mpumalanga</option>
+                      <option value="North West">North West</option>
+                      <option value="Northern Cape">Northern Cape</option>
+                      <option value="Western Cape">Western Cape</option>
                     </select>
+                    <div class="invalid-feedback">Please choose a province</div>
                   </div>
-                  <div class="form-group col-md-6">
-                    <label for="inputCode">Code:</label>
-                    <input type="text" class="form-control" id="inputCode" placeholder="Enter code" />
+                  <div class="form-group col-6-md">
+                    <label class="label" for="inputCode">Code:</label>
+                    <input name="code" type="text" class="form-control" id="inputCode" placeholder="Enter code" />
+                    <div class="invalid-feedback">Please enter a postal code comprised of digits</div>
                   </div>
                 </div>
-                <button type="submit" class="btn btn-primary " id="signUpButton">Sign up!</button>
-                <a class="btn btn-light btn-sm " href="signInScreen.php" role="button" id="signInLinkButton">Already registered? Sign in!</a>
-
+                <button name="submit" type="submit" class="btn btn-primary " id="signUpButton">Sign up!</button>
+                <a class="btn btn-light btn-sm " href="signInScreen.php" role="button" id="signUpLinkButton">Already registered? Sign in!</a>
               </form>
             </div>
           </div>
-          <div class="col-sm-3"></div>
+          <div class="col-sm-4"></div>
         </div>
 
       </div>
     </div>
   </div>
-  <script src="index.js" charset="utf-8"></script>
+  <script src="../index.js" charset="utf-8"></script>
 </body>
 
 </html>

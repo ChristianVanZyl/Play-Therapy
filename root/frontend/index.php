@@ -1,11 +1,8 @@
 <?php
 // to display errors helpful during development
-
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
-?>
-<?php
-  include ('header.php');
+require_once ('header.php');
 ?>
 
 <!-- Page container -->
@@ -103,5 +100,5 @@ ini_set('display_errors', '1');
     </div>
   </div>
   <?php
-    include ('footer.php');
+    require_once ('footer.php');
   ?>

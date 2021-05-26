@@ -3,6 +3,9 @@
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 require_once ('header.php');
+// initialize session on all pages requiring knowledge if user is logged in or not
+session_start();
+
 ?>
 
 <!-- Page container -->

@@ -160,7 +160,11 @@ body {
 
   /* sign in screen*/
 
-
+#signInButton{
+  background-color:  #596e79;
+  border-color:  #596e79;
+  color: #fff;
+}
 
 #signInLinkButton {
   font-size: 14px;
@@ -171,7 +175,7 @@ body {
   border: none;
   overflow: hidden;
   outline:none;
-  color: #596e79;
+  color: #fff;
 }
 
 #emailShorten{
@@ -186,11 +190,11 @@ body {
   color: #fff;
   padding-top: 20px;
   padding-bottom: 20px;
-    margin-left: 725px;
+  margin-left: 804px;
 }
 
 #signInPage{
-  padding: 6% 20% 27% 40%;
+  padding: 4% 15% 25% 15%;
   background-image: url("../images/play.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -203,6 +207,13 @@ body {
 
 #signinPassword{
   color: #fff;
+}
+
+#signinMainContainer{
+  padding-top: 110px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  color: #596e79;
 }
 
 
@@ -299,6 +310,25 @@ body {
   #signUpLinkButton{
       color: white;
     }
+
+   /*sign in page*/
+   #signinHeading{
+       padding-bottom: 5px;
+       margin-left: 285px;
+     }
+
+     #signInPage{
+         padding: 10% 20% 70% 20%;
+         background-size: cover;
+         background-repeat: no-repeat;
+         position: relative;
+           background-image: url("../images/play2.jpg");
+       }
+
+      #emailCenter{
+        margin-right: 100px;
+      }
+
 
 }
 
@@ -419,12 +449,27 @@ body {
     padding-top: 0 !important;
   }
 
+
+
     /* Sign in screen */
+  #signInButton{
+    font-size: 10px;
+    margin-left: 50px;
+  }
 
-  #signInLinkButton {
-      color: #fff;
-    }
+  #signinMainContainer{
+    padding-top: 0;
+    margin-left: 30px;
+    margin-right: 30px;
+  }
 
+  #signinEmail{
+    margin-left: 50px;
+  }
+
+  #signinPassword{
+    margin-left: 50px;
+  }
   label {
       font-family: 'Lato', sans-serif;
       font-weight: 400;
@@ -448,11 +493,11 @@ body {
       color: #fff;
       margin-top: 20px;
       padding-bottom: 5px;
-      margin-left: 40px;
+      margin-left: 55px;
     }
 
   #signInPage{
-      padding: 50% 40% 90% 40%;
+      padding: 35% 40% 100% 40%;
       background-size: cover;
       background-repeat: no-repeat;
       position: relative;
@@ -468,6 +513,19 @@ body {
           margin-right: 0 !important;
 
     }
+
+    #loginEmail{
+      margin-left: 50px;
+      font-size: 10px;
+      width: 250px;
+      }
+
+    #loginPassword{
+      margin-left: 50px;
+      font-size: 10px;
+      width: 250px;
+        }
+
     /* Sign up screen */
 
     .label {

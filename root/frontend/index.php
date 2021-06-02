@@ -1,11 +1,8 @@
 <?php
 // to display errors helpful during development
 error_reporting(E_ALL);
-ini_set('display_errors', '1');
-require_once ('header.php');
-// initialize session on all pages requiring knowledge if user is logged in or not
-session_start();
-
+ini_set("display_errors", "1");
+require_once ("header.php");
 ?>
 
 <!-- Page container -->
@@ -103,5 +100,5 @@ session_start();
     </div>
   </div>
   <?php
-    require_once ('footer.php');
+    require_once ("footer.php");
   ?>

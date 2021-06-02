@@ -1,9 +1,9 @@
 <?php
-// destroy the session
-if (session_destroy()){
-  //redirect back to the signup page
-  header("Location: ../frontend/screens/signUpScreen.php");
-  exit;
-}
+  // destroy the session and redirect to home screen
 
-?>
+session_destroy();
+echo "<script type='text/javascript'>
+location='../frontend/screens/signInScreen.php';
+</script>";
+exit();
+ ?>

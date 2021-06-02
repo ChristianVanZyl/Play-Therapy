@@ -35,7 +35,7 @@ session_start();
     <div class="main">
       <!--Login content -->
 
-      <div class="container-fluid" id="signUpPage">
+
         <div class="container-fluid" id="signupMainContainer">
           <h1 id="signupHeading">Sign Up</h1>
           <div class="row justify-content-center">
@@ -97,7 +97,7 @@ session_start();
           <div class="col-sm-4"></div>
         </div>
 
-      </div>
+
     </div>
   </div>
     <!--  Bootstrap and own scripts-->

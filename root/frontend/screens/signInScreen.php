@@ -4,7 +4,6 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -20,7 +19,6 @@ session_start();
   <!--  CSS -->
   <link rel="stylesheet" href="../css/styles.css" />
 </head>
-
 <body>
   <nav class="navbar navbar-expand-lg">
     <a class="navbar-brand mx-auto" href="../index.php"><img id="playLogo" src="../images/logo.png" alt="playLogo" width="170" height="100" /><span>PLAY THERAPY TOYS <b>by Lenka De Villiers-Van Zyl</b></span>

@@ -1,11 +1,18 @@
 
   /* Header, main body content and Footer */
 
-body {
+#indexBody {
     background-color: #fff;
     margin: 0;
 
 }
+
+#adminBody {
+    background-color: #fff;
+
+
+}
+
 
 .navbar{
 	padding-left: 20px;
@@ -45,7 +52,7 @@ body {
 }
 
 .nav-link:hover {
-  color: #434e57;
+  color:  #6d808f;
 }
 
 .navbar-brand:hover {
@@ -142,7 +149,13 @@ body {
   font-family: 'Noto Sans', sans-serif;
   font-weight: 700;
   color: white;
+  text-align: center;
 }
+
+.table th{
+  font-size: 18px;
+}
+
 .copyrightText{
   text-align: center;
   font-weight: 700;
@@ -154,9 +167,23 @@ body {
 
 }
 
-#socialMediaIcons {
+
+.imgPlay:hover{
+  color:  #6d808f;
+}
+
+
+#socialMediaImg{
+
   color: white;
 }
+
+#socialMediaImg:hover{
+  opacity: 0.9;
+  color:  #6d808f;
+}
+
+
 
   /* sign in screen*/
 
@@ -215,8 +242,6 @@ body {
   font-weight: 400;
   color: #596e79;
 }
-
-
 
 /* sign up screen */
 
@@ -293,6 +318,123 @@ body {
   color: #596e79;
 }
 
+/*loggedIn*/
+.nav-item {
+ margin-right: 50px;
+
+}
+
+
+/* admin main screen */
+
+.adminborder{
+  border-bottom: 2px solid #596e79;
+
+}
+
+.adminContainer {
+  margin-top: 8%;
+  margin-bottom: 2%;
+}
+
+.adminHeadings{
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 700;
+  color: #596e79;
+  font-size: 42px;
+  text-align: center;
+  padding-top: 2%;
+  padding-bottom: 1%;
+
+}
+
+#adminButton{
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 700;
+  margin-left: 80px;
+}
+
+#backButton{
+  margin-right: 30px;
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 700;
+}
+
+/* editadmin screen */
+
+
+.containerAdminDetails{
+  margin-left: 200px;
+}
+
+
+#adminMainContainer{
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  color: #596e79;
+}
+
+
+#accounts{
+  border-radius: 20px;
+  width: 300px;
+  height: 220px;
+  margin-right: 100px;
+}
+
+#products{
+  border-radius: 20px;
+  width: 300px;
+  height: 220px;
+}
+
+#orderlist{
+  border-radius: 20px;
+  width: 300px;
+  height: 220px;
+  margin-left: 100px;
+}
+
+.space {
+  margin-top: 220px;
+}
+
+#adminMenuButton {
+  padding-top: 20px;
+  font-size: 20px;
+  font-style: italic;
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 700;
+  background-color:  #fff;
+  border-color:  #fff;
+  color: #596e79;
+}
+
+/* editproducts screen */
+
+#inputCategory{
+  width: 100px;
+}
+
+#inputProdName {
+  width: 300px;
+
+}
+
+#inputProdType{
+  width: 300px;
+}
+
+#inputPrice{
+  width: 300px;
+}
+
+#inputQuantity{
+  width: 300px;
+
+}
+
+
 
 /*ipad*/
 @media (max-width: 768px){
@@ -311,7 +453,7 @@ body {
       color: white;
     }
 
-   /*sign in page*/
+/*sign in page*/
    #signinHeading{
        padding-bottom: 5px;
        margin-left: 285px;
@@ -329,9 +471,7 @@ body {
         margin-right: 100px;
       }
 
-
 }
-
 
 
 /*mobile */

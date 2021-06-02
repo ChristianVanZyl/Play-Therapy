@@ -21,6 +21,7 @@ const empty = "";
 var checkArray = [];
 var result = false;
 var loginResult = false;
+const form = document.getElementById("adminform");
 //        SignUpScreen functions              //
 
 // submithandler checks all the input fields and puts them through validation tests
@@ -116,7 +117,7 @@ function provinceCheck() {
 }
 
 function codeCheck() {
-  if (code.value != empty) {
+  if (/^[0-9]+$/.test(code.value)) {
     code.classList.remove("is-invalid");
     code.classList.add("is-valid");
     result = true;
@@ -124,7 +125,43 @@ function codeCheck() {
     code.classList.add("is-invalid");
     result = false;
   }
+
   return result;
 }
+//        Admin Screen functions              //
 
-//        SignInScreen functions              //
+// adminSubmithandler checks all the input fields and puts them through validation tests
+
+function adminSubmitHandler() {
+  if (
+    emailCheck() &&
+    passwordCheck() &&
+    streetCheck() &&
+    cityCheck() &&
+    provinceCheck() &&
+    codeCheck()
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+//        Product Screen functions              //
+
+// productSubmithandler checks all the input fields and puts them through validation tests
+
+function productSubmitHandler() {
+  if (
+    emailCheck() &&
+    passwordCheck() &&
+    streetCheck() &&
+    cityCheck() &&
+    provinceCheck() &&
+    codeCheck()
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+}

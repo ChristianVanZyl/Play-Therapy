@@ -1,3 +1,9 @@
+<<?php
+// initialize session on all pages requiring knowledge if user is logged in or not
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,7 +27,7 @@
   <link rel="stylesheet" href="./css/styles.css" />
 </head>
 
-<body>
+<body id="indexBody">
   <!--  Header code inserted below-->
   <div class="fixed-top">
     <nav class="navbar navbar-expand-lg ">
@@ -41,17 +47,31 @@
             <a class="nav-link" href="https://playtherapies.co.za/blog/">Blog</a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="./screens/productScreen.php">About</a>
-          </li>
-          <li class="nav-item ">
             <a class="nav-link" href="./screens/productScreen.php">Contact Us</a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="./screens/signUpScreen.php">Sign Up</a>
+            <a class="nav-link" href="./screens/productScreen.php" id="aboutNav">About</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./screens/signInScreen.php">Login</a>
-          </li>
+
+          <?php
+          if (isset($_SESSION["user"])) {
+          	echo  "<li class='nav-item dropdown'> <a class='nav-link dropdown-toggle' href='#' id='navbarDropdownMenuLink' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+        <i class='far fa-user  p-2'></i>Profile
+        </a>
+        <div class='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>
+        <a class='dropdown-item' href='./screens/profileScreen.php'>Profile</a>
+        <a class='dropdown-item' href='./screens/orderListScreen.php'>My Orders</a>
+        <a class='dropdown-item' href='../backend/signOut.php'>Sign Out</a>
+        </div>
+            </li>
+        <li class='nav-item'><a class='nav-link' href='./screens/signUpScreen.php'><i class='fas fa-shopping-cart p-2'></i>Cart</a></li>";}
+        else {
+          echo "<li class='nav-item'><a class='nav-link' href='./screens/cartScreen.php'>Sign Up</a>
+            </li>
+            <li class='nav-item'>
+              <a class='nav-link' href='./screens/signInScreen.php'>Sign In</a>
+            </li>";}
+          ?>
         </ul>
       </div>
     </nav>

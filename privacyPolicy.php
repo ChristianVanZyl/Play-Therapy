@@ -1,19 +1,34 @@
 <?php
-// to display errors helpful during development
-error_reporting(E_ALL);
-ini_set("display_errors", "1");
+// initialize session on all pages requiring knowledge if user is logged in or not
 session_start();
-require_once ("header.php");
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Play Therapy</title>
+  <!--  favicon -->
+  <link rel="icon" type="image/x-icon" href="images/favi2_L5I_icon.ico" />
+  <!--  Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <!--  Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+  <!--  Google Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet" />
+  <!--  CSS -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <?php
+  require_once ("header.php");
+  ?>
 
-<!-- Page container -->
-<div class="container-fluid">
-  <!-- Main column where content goes  -->
-  <div class="main">
-    <!-- Search Bar and Image -->
-    <div class="container-fluid" id="homeContainer">
+<div class="container" style="  padding-top: 140px;">
   <h1 class="infobackgroundHeadings">Privacy Policy for Play Therapy by Lenka De Villiers-Van Zyl</h1>
 
   <p class="infoPara">At Play Therapy by Lenka De Villiers-Van Zyl, accessible from www.Play Therapy by Lenka De Villiers-Van Zyl.co.za, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of
@@ -30,7 +45,7 @@ require_once ("header.php");
 
   <p class="infoPara">By using our website, you hereby consent to our Privacy Policy and agree to its terms.</p>
 
-  <h2>Information we collect</h2>
+  <h2 class="infobackgroundHeadings">Information we collect</h2>
 
   <p class="infoPara">The personal information that you are asked to provide, and the reasons why you are asked to provide it, will be made clear to you at the point we ask you to provide your personal information.</p>
   <p class="infoPara">If you contact us directly, we may receive additional information about you such as your name, email address, phone number, the contents of the message and/or attachments you may send us, and any other information you may choose
@@ -107,6 +122,16 @@ require_once ("header.php");
     strongly encourage
     you to contact us immediately and we will do our best efforts to promptly remove such information from our records.</p>
 
-    <?php
-      require_once ("footer.php");
-    ?>
+  </div>
+  <?php
+  require_once ("footer.php");
+  ?>
+
+  <!--  Bootstrap and own scripts-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script src="index.js" charset="utf-8"></script>
+  </body>
+
+  </html>

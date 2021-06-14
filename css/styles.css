@@ -566,7 +566,7 @@ font-size:16px;
 }
 #aboutPara{
 
-    text-align: center;
+  text-align: center;
   font-size: 16px;
   font-family: 'Noto Sans', sans-serif;
   font-weight: 400;
@@ -802,7 +802,7 @@ font-size:16px;
 
 .infobackground{
   background-color: #596e79;
-  color: white;
+  color: #596e79;
   font-family: 'Noto Sans', sans-serif;
   font-weight: 400;
   margin: 2% 7% 7% 5%;
@@ -810,10 +810,19 @@ font-size:16px;
 
 .infoPara{
   text-align: justify;
+  color: #596e79;
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 400;
+    padding-top: 1%;
+      padding-bottom: 1%;
 }
 .infobackgroundHeadings{
+  padding-top: 1%;
   text-align: center;
-  padding-bottom: 2%;
+  padding-bottom: 1%;
+  color: #596e79;
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 700;
 }
 
 /*ipad*/

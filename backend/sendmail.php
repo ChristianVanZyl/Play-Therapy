@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set("display_errors", "1");
+
 if(isset($_POST["submit"])){
     // receiving address
     $to = "infoplaytherapytoyslvz@gmail.com";
@@ -6,15 +9,19 @@ if(isset($_POST["submit"])){
     $from = $_POST["email"];
     $subject = $_POST["subject"];
     $message = $_POST["message"];
+    // header to display from the domain sending from (which is infoplay),
+    // who sent it and who you should reply to ($from customer's email address)
+    $headers = 'From: infoplaytherapytoyslvz@gmail.com' . "\r\n" .
+        'Reply-To: ' . $from . "\r\n" .
+        'X-Mailer: PHP/' . phpversion();
 
-    $header = "From:" . $from;
-    mail($to,$subject,$message,$header);
-    echo "Thank you, we will contact you shortly.";
-    echo "<script type='text/javascript'>
-    location='../contactUs.php';
-    </script>";
-  }else{
-    echo"error";
-  }
+    if(mail($to,$subject,$message,$headers)){
+      echo "<script type='text/javascript'>alert('Thank you, we will contact you shortly.');
+      location='../contactUs.php';
+      </script>";
+    }else{
+      echo  "error";
+    };
+}
 
 ?>

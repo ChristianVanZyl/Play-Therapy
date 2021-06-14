@@ -1,6 +1,5 @@
 <?php
 // to display errors helpful during development
-
 session_start();
 ?>
 
@@ -62,28 +61,30 @@ session_start();
         <form id="form" method="post" action= "backend/sendmail.php" enctype="multipart/form-data" onsubmit="return contactSubmitHandler()">
     <div style="padding-left: 10%; padding-right: 10%;">
       <div class="form-group">
-        <label class="label" for="inputEmail" >Email:</label>
+        <label style="padding-bottom: 1%" class="label" for="inputEmail" >Email:</label>
         <input name="email" type="email" class="form-control" id="inputEmail" placeholder="Enter email address" />
         <div class="invalid-feedback">Please enter an email address.</div>
       </div>
       <div class="form-group">
-        <label class="label" for="inputSubject" >Subject:</label>
+        <label style="padding-bottom: 1%" class="label" for="inputSubject" >Subject:</label>
         <input name="subject" type="text" class="form-control" id="inputSubject" placeholder="Enter the subject" />
           <div class="invalid-feedback">Please enter a subject header.</div>
       </div>
       <div class="form-group">
-            <label class="label" for="form_message" >Type your message</label>
+            <label  style="padding-bottom: 1%" class="label" for="form_message" >Type your message</label>
             <textarea id="form_message" type="text" name="message" class="form-control" placeholder="Enter message" rows="5" ></textarea>
               <div class="invalid-feedback">Please enter a message.</div>
     </div><br />
-              <button name="submit" value="submit" type="submit" class="btn btn-primary " id="signInButton" style="margin-left: 84%"> &nbspSend&nbsp</button>
+              <button name="submit" value="submit" type="submit" class="btn btn-primary " id="signInButton" style=""> &nbspSend&nbsp</button>
               </div>
         </form>
               </div>
   </div>
+  <div class="col-sm-12 col-lg-4">
+    <img src="images/contact3.jpeg" alt="contact" class="img-fluid">
+  </div>
       </div>
-      <div class="col-sm-12 col-lg-4">
-      </div>
+
 </div>
 
 

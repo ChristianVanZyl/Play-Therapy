@@ -19,8 +19,6 @@ $result = mysqli_query($conn, $productInfo);
 $count = mysqli_num_rows($result);
   if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
-
-
       echo
       "
       <tr>
@@ -41,6 +39,3 @@ $count = mysqli_num_rows($result);
     exit;
 
 ?>
-
-
-      

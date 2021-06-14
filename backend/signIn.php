@@ -79,6 +79,12 @@ exit;
         $_SESSION["authLVL"] = $row["accountAccLVL"];
         // set session login variable to true
         $_SESSION["login"] = true;
+        // create variable to hold cart data
+        $_SESSION["cart"] = [];
+        // create variable to hold cart data quantity
+        $_SESSION["cartQuantity"] = 0;
+        // create variable holding cart total
+        $_SESSION['totalCart'] = 0;
         // now check and set level of authentication.
       if ($_SESSION["authLVL"] == 0) {
             // login verified as user, direct to home screen where associated accountlevel is 0

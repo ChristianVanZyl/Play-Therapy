@@ -25,7 +25,15 @@
           <li class="nav-item ">
             <a class="nav-link" href="aboutUs.php" id="aboutNav">About</a>
           </li>
-
+          <?php if(isset($_SESSION["cartQuantity"])) {
+            echo "<li class='nav-item '>
+            <a class='nav-link' href='cartScreen.php'> <i class='fa badge' style='font-size:24px;  padding-left: 0;' value=" .$_SESSION['cartQuantity']. ">&#xf07a;</i>Cart</a>
+          </li>";}else{
+            echo  "<li class='nav-item '>
+                <a class='nav-link' href='cartScreen.php'> <i class='fa badge' style='font-size:24px;  padding-left: 0;'>&#xf07a;</i>Cart</a>
+              </li>";
+          }
+          ?>
           <?php
           if (isset($_SESSION["name"]) && $_SESSION["name"] === "user") {
           	echo  "<li class='nav-item dropdown'> <a class='nav-link dropdown-toggle' href='#' id='navbarDropdownMenuLink' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
@@ -36,8 +44,7 @@
         <a class='dropdown-item' href='orderListScreen.php'>My Orders</a>
         <a class='dropdown-item' href='backend/signOut.php'>Sign Out</a>
         </div>
-            </li>
-        <li class='nav-item'><a class='nav-link' href='signUpScreen.php'><i class='fas fa-shopping-cart p-2'></i>Cart</a></li>";}
+            </li>";}
         else {
           echo "<li class='nav-item'><a class='nav-link' href='signUpScreen.php'>Sign Up</a>
             </li>

@@ -276,3 +276,23 @@ function contactSubmitHandler() {
 
   return result;
 }
+//        Cart  Screen functions              //
+const redirect = document.getElementById("cartButtonRedirect");
+if (redirect) {
+  redirect.addEventListener("click", reDirectCart, false);
+}
+
+function reDirectCart() {
+  location.href = "paymentScreen.php";
+}
+
+const cartEmpty = document.getElementById("alertEmpty");
+if (cartEmpty) {
+  cartEmpty.addEventListener("click", cartEmptyMessage, false);
+}
+
+function cartEmptyMessage() {
+  alert(
+    "Your cart is empty. Please fill your cart with at least one item before checking out"
+  );
+}

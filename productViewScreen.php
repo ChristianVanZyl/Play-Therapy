@@ -38,6 +38,18 @@ session_start();
     </ol>
   </nav>
 
+  <div class="container-fluid">
+    <div class="row justify-content-center"  id="browseLinksRow">
+      <div class="col-6-auto" id="browseLinksP">
+        <a class="btn btn-light btn-sm" href="productViewScreenBooks.php" role="button" id="browseButton">Browse Books <img src="./images/linkIcon.jpg" alt="linkIcon" width="100px"></a>
+      </div>
+      <div class="col-6-auto" id="browseLinksP">
+        <a class="btn btn-light btn-sm" href="productViewScreenToys.php" role="button" id="browseButton">&nbsp; Browse Toys &nbsp; <img src="./images/linkIcon2.jpg" width="100px" alt="linkIcon"></a>
+      </div>
+    </div>
+    <div class='mainunderlineDiv'>  </div>
+  </div>
+
   <div class="container-fluid" id="productContainer">
 
 
@@ -59,18 +71,35 @@ session_start();
 
          foreach($result as $row){
            echo  "<div class='col-sm-12 col-md-6 col-lg-3 p-2' align='center'>
+           <a href='productScreen.php?id= " .$row['productID']. "' style='text-decoration:none;' >
            <div class='card h-100 text-center' >
-                 <img src='data:image/jpg;base64, " .base64_encode($row['prodImg']). "' class='card-img-top' style='width: 300px; height: 300px; margin: auto; padding-top: 20px; padding-bottom: 20px;'>
+                 <img src='data:image/jpg;base64, " .base64_encode($row['prodImg']). "' class='card-img-top' style='margin: auto; padding-top: 20px; padding-bottom: 20px;'>
                  <div class='card-body' style='background-color: #f7f7f8; padding: 1rem;'>
-                 <h5 class='card-title p-2' style='font-size: 16px; color:#596e79'>" .$row['productName']. "</h5>
+                 <h5 class='card-title p-2 h-25' style='font-size: 16px; color:#596e79'>" .$row['productName']. "</h5>
                  <br />
-           <p class='card-text'><strong>R" .$row['prodprice']. "</strong></p>
-            <div class='card-footer '> <a href='' class='btn btn-primary' id='signInButton' >Add to Cart &nbsp;<i class='fas fa-shopping-cart'></i></a></div>
-
+           <p class='card-text' style='color:#596e79'><strong>R" .$row['prodprice']. "</strong></p>
+            <div class='card-footer '>";
+            if (isset($_SESSION['login']) && $_SESSION['login'] === true){
+              echo "
+              <form method='post' action='backend/addToCart.php?id= " .$row['productID']. "'>
+              <button name='submit' value='submit' type='submit' class='btn btn-primary' id='cartButton'>Add to Cart &nbsp;<i class='fas fa-shopping-cart'></i></button></form></div>
+                   </div>
+             </div>
+             </a>
+             </div>";
+            }else{
+            echo "
+            <script type='text/javascript'> function JSalert() {
+              alert('Please sign up/login before adding items to cart');
+            }
+             </script>
+            <button onclick='event.preventDefault(), JSalert()' class='btn btn-primary' id='cartButton'>Add to Cart &nbsp;<i class='fas fa-shopping-cart'></i></button></div>
                  </div>
            </div>
+           </a>
            </div>";
-            if (++$counter == 12){ break;}
+
+            }
              };
              mysqli_close($conn);
          ?>
@@ -78,13 +107,25 @@ session_start();
 
     </div>
 
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        <li class="page-item disabled">
+          <a class="page-link" href="#" tabindex="-1">Previous</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#">Next</a>
+        </li>
+      </ul>
+    </nav>
 
-  <?php
-    require_once ("footer.php");
-  ?>
 </div>
 <!--  Page container end-->
-
+<?php
+  require_once ("footer.php");
+?>
 <!--  Bootstrap and own scripts-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

@@ -29,11 +29,6 @@ session_start();
   ?>
 <!-- Page container -->
 
-
-
-
-
-
 <div class="container-fluid" style="  padding-top: 140px;">
   <nav aria-label="breadcrumb" id="breadCustom">
     <ol class="breadcrumb">
@@ -42,41 +37,76 @@ session_start();
       <li class="breadcrumb-item active" aria-current="page" style="color: #95ab9e">Toys</li>
     </ol>
   </nav>
+  </div>
+  <div class="container-fluid">
+    <div class="row justify-content-center"  id="browseLinksRow">
+      <div class="col-auto" id="browseLinksP">
+        <h1 id="browseHeading"> Toys <img src="./images/linkIcon.jpg" width="100px" alt="linkIcon"></h1>
+      </div>
+    </div>
+        <div class='mainunderlineDiv'>  </div>
+  </div>
+  <a class="btn btn-light btn-sm" href="productViewScreenBooks.php" role="button" id="browseButtonSmall2">Browse Books</a>
+  <div class="container-fluid" id="productContainer">
 
-  <h6>toys</h6>
-  <div class="row justify-content-center">
-   <?php
-   require_once ("backend/connDB.php");
-   // create new object conn. Calls new instance of mysqli function, using values from loginDB
-   $conn = mysqli_connect($hostName, $username, $password, $databaseName);
-   // connect_error is a property of the conn object, if it has a value, the die function is called to terminate the program
-    if($conn->connect_error) {
-      // the error is not written to console after dev is completed, because can give hackers information in certain circumstances
-      die("Fatal Error");
-    };
 
-   $counter = 0;
-   $productInfo = "SELECT productID, categoryID, productName, prodType, prodprice, prodQuantity, prodImg FROM product";
-   $result = mysqli_query($conn, $productInfo);
 
-       foreach($result as $row){
-         echo  "<div class='col-sm-12 col-md-6 col-lg-4 p-2' align='center'>
-         <div class='card text-center' style='width: 350px; height: 450px'>
-               <img src='data:image/jpg;base64, " .base64_encode($row['prodImg']). "' class='card-img-top' style='width: 300px; height: 300px; margin: auto; padding-top: 20px; padding-bottom: 20px;'>
+    <div class="row justify-content-center">
+     <?php
+     require_once ("backend/connDB.php");
+     // create new object conn. Calls new instance of mysqli function, using values from loginDB
+     $conn = mysqli_connect($hostName, $username, $password, $databaseName);
+     // connect_error is a property of the conn object, if it has a value, the die function is called to terminate the program
+      if($conn->connect_error) {
+        // the error is not written to console after dev is completed, because can give hackers information in certain circumstances
+        die("Fatal Error");
+      };
+
+     $counter = 0;
+     $productInfo = "SELECT productID, categoryID, productName, prodType, prodprice, prodQuantity, prodImg FROM product";
+     $result = mysqli_query($conn, $productInfo);
+
+     foreach($result as $row){
+       if($row['categoryID'] == 1)
+       {
+         echo  "<div class='col-sm-12 col-md-6 col-lg-3 p-2' align='center'>
+         <a href='productScreen.php?id= " .$row['productID']. "' style='text-decoration:none;' >
+         <div class='card h-100 text-center' >
+               <img src='data:image/jpg;base64, " .base64_encode($row['prodImg']). "' class='card-img-top' style='margin: auto; padding-top: 20px; padding-bottom: 20px;'>
                <div class='card-body' style='background-color: #f7f7f8; padding: 1rem;'>
-               <h5 class='card-title p-2' style='font-size: 16px; color:#596e79'>" .$row['productName']. "</h5>
-               <p class='card-text'><strong>R" .$row['prodprice']. "</strong></p>
-               <a href='' class='btn btn-primary' id='signInButton' >Add to Cart &nbsp;<i class='fas fa-shopping-cart'></i></a>
+               <h5 class='card-title p-2 h-25' style='font-size: 16px; color:#596e79'>" .$row['productName']. "</h5>
+               <br />
+         <p class='card-text' style='color:#596e79'><strong>R" .$row['prodprice']. "</strong></p>
+          <div class='card-footer '>";
+          if (isset($_SESSION['login']) && $_SESSION['login'] === true){
+            echo "
+            <form method='post' action='backend/addToCart.php?id= " .$row['productID']. "'>
+            <button name='submit' value='submit' type='submit' class='btn btn-primary' id='cartButton'>Add to Cart &nbsp;<i class='fas fa-shopping-cart'></i></button></form></div>
+                 </div>
+           </div>
+           </a>
+           </div>";
+          }else{
+          echo "
+          <script type='text/javascript'> function JSalert() {
+            alert('Please sign up/login before adding items to cart');
+          }
+           </script>
+          <button onclick='event.preventDefault(), JSalert()' class='btn btn-primary' id='cartButton'>Add to Cart &nbsp;<i class='fas fa-shopping-cart'></i></button></div>
                </div>
          </div>
+         </a>
          </div>";
-          if (++$counter == 4){ break;}
-           };
-           mysqli_close($conn);
-       ?>
-     </div>
 
-  </div>
+          }
+        }};
+         mysqli_close($conn);
+         ?>
+       </div>
+
+    </div>
+
+
 
   <?php
     require_once ("footer.php");

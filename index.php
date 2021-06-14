@@ -63,62 +63,22 @@ session_start();
           <a class="btn btn-light btn-sm" href="productViewScreenToys.php" role="button" id="browseButton">&nbsp; Browse Toys &nbsp; <img src="./images/linkIcon2.jpg" width="100px" alt="linkIcon"></a>
         </div>
       </div>
+      <div class='mainunderlineDiv'>  </div>
     </div>
 
 <!-- bootstrap carousel -->
 
-<div class="container-fluid">
 
 
-      <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-          <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-          <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner ">
-          <div class="carousel-item active ">
-            <img src="images/bulldog2small.jpg" class="d-block w-25" alt="bulldog" >
-            <div class="carousel-caption d-none d-md-block">
-              <h5>First slide label</h5>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-            </div>
-          </div>
-          <div class="carousel-item ">
-            <img src="images/DrooperDogsmall.jpg" class="d-block w-25" alt="sooth" >
-            <div class="carousel-caption d-none d-md-block">
-              <h5>Second slide label</h5>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </div>
-          </div>
-          <div class="carousel-item ">
-            <img src="images/bunnysmall.jpg" class="d-block w-25" alt="wince" >
-            <div class="carousel-caption d-none d-md-block">
-              <h5>Third slide label</h5>
-              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-            </div>
-          </div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
 
-</div>
+<div class="container-fluid" id="productContainer">
 
 
-<div class="container-fluid">
 
-
-  <h6>New Releases</h6>
   <div class="row justify-content-center">
    <?php
    require_once ("backend/connDB.php");
+
    // create new object conn. Calls new instance of mysqli function, using values from loginDB
    $conn = mysqli_connect($hostName, $username, $password, $databaseName);
    // connect_error is a property of the conn object, if it has a value, the die function is called to terminate the program
@@ -131,24 +91,53 @@ session_start();
    $productInfo = "SELECT productID, categoryID, productName, prodType, prodprice, prodQuantity, prodImg FROM product";
    $result = mysqli_query($conn, $productInfo);
 
+
+
        foreach($result as $row){
-         echo  "<div class='col-sm-12 col-md-6 col-lg-4 p-2' align='center'>
-         <div class='card text-center' style='width: 350px; height: 450px'>
-               <img src='data:image/jpg;base64, " .base64_encode($row['prodImg']). "' class='card-img-top' style='width: 300px; height: 300px; margin: auto; padding-top: 20px; padding-bottom: 20px;'>
-               <div class='card-body' style='background-color: #f7f7f8; padding: 1rem;'>
-               <h5 class='card-title p-2' style='font-size: 16px; color:#596e79'>" .$row['productName']. "</h5>
-               <a href='' class='btn btn-primary' id='signInButton' >Add to Cart &nbsp;<i class='fas fa-shopping-cart'></i></a>
+         echo  "
+
+         <div class='col-sm-12 col-md-6 col-lg-2 p-2' >
+            <a href='productScreen.php?id= " .$row['productID']. "' style='text-decoration:none;'>
+         <div class='card h-100 text-center'>
+               <img src='data:image/jpg;base64, " .base64_encode($row['prodImg']). "' class='img-fluid' style='margin: auto; padding-top: 20px; padding-bottom: 20px;'>
+         <div class='card-body' style='background-color: #f7f7f8; padding: 1rem;'>
+         <h5 class='card-title p-2 h-25' style='font-size: 16px; color:#596e79'>" .$row['productName']. "</h5>
+         <br />
+
+         <p class='card-text' style='color:#596e79'><strong>R" .$row['prodprice']. "</strong></p>
+          <div class='card-footer '>";
+
+          if (isset($_SESSION['login']) && $_SESSION['login'] === true){
+            echo "
+            <form method='post' action='backend/addToCart.php?id= " .$row['productID']. "'>
+            <button name='submit' value='submit' type='submit' class='btn btn-primary' id='cartButton'>Add to Cart &nbsp;<i class='fas fa-shopping-cart'></i></button></form></div>
+                 </div>
+           </div>
+           </a>
+           </div>";
+          }else{
+          echo "
+          <script type='text/javascript'> function JSalert() {
+            alert('Please sign up/login before adding items to cart');
+          }
+           </script>
+          <button onclick='event.preventDefault(), JSalert()' class='btn btn-primary' id='cartButton'>Add to Cart &nbsp;<i class='fas fa-shopping-cart'></i></button></div>
                </div>
          </div>
+         </a>
          </div>";
-          if (++$counter == 4){ break;}
+
+          }
+          if (++$counter == 6){ break;}
            };
            mysqli_close($conn);
        ?>
      </div>
+  </div>
+  </div>
+    
 
-  </div>
-  </div>
+
   <?php
     require_once ("footer.php");
   ?>

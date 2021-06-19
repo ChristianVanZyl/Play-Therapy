@@ -55,7 +55,7 @@ echo "<script type='text/javascript'> alert('Sign in as admin.');
             <a class="nav-link" href="editProducts.php">Edit Products</a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="adminViewOrders.php">View Orders</a>
+            <a class="nav-link" href="editAdminOrders.php">View Orders</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="backend/signOut.php">Sign Out</a>
@@ -81,7 +81,7 @@ echo "<script type='text/javascript'> alert('Sign in as admin.');
           <a href="editProducts.php"><img id="products" src="images/products.jpg" alt="accounts" /></a>
         </div>
         <div class="col-12-sm col-6-md col-4-lg">
-          <a href="adminViewOrders.php"><img id="orderlist" src="images/orderlist.jpg" alt="accounts" /></a>
+          <a href="editAdminOrders.php"><img id="orderlist" src="images/orderlist.jpg" alt="accounts" /></a>
         </div>
 
       </div>
@@ -93,7 +93,7 @@ echo "<script type='text/javascript'> alert('Sign in as admin.');
           <a class="btn btn-light btn-sm" href="editProducts.php" role="button" id="adminMenuButton" style="margin-left: 240px">Edit Products</a>
         </div>
         <div class="col-12-sm col-6-md col-4-lg">
-          <a class=" btn btn-light btn-sm" href="adminViewOrders.php" role="button" id="adminMenuButton" style="margin-left: 250px">View Orders</a>
+          <a class=" btn btn-light btn-sm" href="editAdminOrders.php" role="button" id="adminMenuButton" style="margin-left: 250px">View Orders</a>
         </div>
       </div>
     </div>

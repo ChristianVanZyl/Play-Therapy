@@ -18,14 +18,10 @@
 }
 
 #productContainer{
-  padding-left: 100px;
-  padding-right: 100px;
+  padding-left: 250px;
+  padding-right: 250px;
 }
 
-
-.carousel-item {
-    margin-right: 0;
- }
 
 h6{
   font-family: 'Noto Sans', sans-serif;
@@ -127,13 +123,18 @@ font-size:16px;
 }
 
 #searchBar {
-  width: 400px;
+  width: 300px;
   margin: auto;
 }
 
+#underMainHeadings{color: #596e79;
+font-family: 'Noto Sans', sans-serif;
+font-weight: 400;
+font-size: 22px;}
+
 #browseLinksRow {
   margin-top: 30px;
-  padding-bottom: 10px;
+  padding-bottom: 3%;
 
 }
 
@@ -171,7 +172,7 @@ font-size:16px;
   border-color:  #fff;
   color: #596e79;
   padding-top: 3%;
-  margin-left: 88.5%;
+  margin-left: 80.5%;
   padding-bottom: 2%;
 }
 
@@ -183,11 +184,15 @@ font-size:16px;
   border-color:  #fff;
   color: #596e79;
   padding-top: 3%;
-  margin-left: 88%;
+  margin-left: 80%;
   padding-bottom: 2%;
 }
 
 #browseButtonSmall:hover{
+  color: #abb6bf;
+}
+
+#browseButtonSmall2:hover{
   color: #abb6bf;
 }
 
@@ -239,6 +244,16 @@ font-size:16px;
   border-width: thin;
   border-color: white;
 }
+
+#supportSection{
+  padding-top: 15%;
+  padding-bottom: 15%;
+  font-size: 16px;
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 400;
+  color: #596e79;
+}
+
 
 #socialMediaImg{
   color: white;
@@ -638,6 +653,16 @@ font-size:16px;
 
 /* end contact us screens */
 
+/* productBrowse screen */
+
+
+
+
+#pageNav{
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 700;
+  color: #596e79;
+}
 /* product details screen */
 #prodScreenHeading{
   text-align: justify;
@@ -798,6 +823,18 @@ font-size:16px;
 
 /* end cart  screen */
 
+/* order screen */
+.orderScreenTitles{
+    font-weight: 400;
+  color: #596e79;
+  font-family: 'Noto Sans', sans-serif;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-top: 1%;
+}
+
+/* end orderscreen */
+
 /* policy screens */
 
 .infobackground{
@@ -825,13 +862,31 @@ font-size:16px;
   font-weight: 700;
 }
 
+
+/* end policy screens */
+
+/* start profile screen */
+#changePasswordButton{
+  background-color:  #596e79;
+  border-color:  #596e79;
+  color: #fff;
+
+}
+#checkIfChangePassword{
+  background-color:  #596e79;
+  border-color:  #596e79;
+  color: #fff;
+
+}
+
+
 /*ipad*/
 @media (max-width: 768px){
 
   /*sign up page*/
 
   #signupMainContainer{
-    padding-top: 100px;
+    padding-top: 150px;
   }
 
   #signupHeading{

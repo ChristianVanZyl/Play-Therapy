@@ -35,6 +35,9 @@ session_start();
   <!-- Main column where content goes  -->
   <div class="main">
     <!-- Search Bar and Image -->
+
+
+
     <div class="container-fluid" id="homeContainer">
       <div class="row">
         <div class="col-sm-12 col-sm-6">
@@ -45,16 +48,17 @@ session_start();
         </div>
         <div class="col-sm-12 col-sm-6">
           <div class="input-group mb-3" id="searchBar">
-            <input type="text" class="form-control" />
+
+            <input type="text" name="search" class="form-control" placeholder="Search for a product"/>
             <div class="input-group-append">
-              <button id="searchButton" class="btn btn-primary">
-                <i class="fas fa-search"></i>
-              </button>
+                <button name='submit' value='submit' type='submit' class='btn btn-primary' id='searchButton'><i class="fas fa-search"></i></button>
             </div>
+
           </div>
         </div>
       </div>
     </div>
+
 
     <div class="container-fluid">
       <div class="row justify-content-center"  id="browseLinksRow">
@@ -68,15 +72,12 @@ session_start();
       <div class='mainunderlineDiv'>  </div>
     </div>
 
-<!-- bootstrap carousel -->
-
-
-
 
 <div class="container-fluid" id="productContainer">
 
 
 
+<h1 id="underMainHeadings">Popular Products</h1>
   <div class="row justify-content-center">
    <?php
    require_once ("backend/connDB.php");
@@ -90,15 +91,13 @@ session_start();
     };
 
    $counter = 0;
-   $productInfo = "SELECT productID, categoryID, productName, prodType, prodprice, prodQuantity, prodImg FROM product";
+   $productInfo = "SELECT * FROM product ORDER BY prodprice ASC";
    $result = mysqli_query($conn, $productInfo);
-
-
 
        foreach($result as $row){
          echo  "
 
-         <div class='col-sm-12 col-md-6 col-lg-2 p-2' >
+         <div class='col-sm-12 col-md-6 col-lg-3 p-2' >
             <a href='productScreen.php?id= " .$row['productID']. "' style='text-decoration:none;'>
          <div class='card h-100 text-center'>
                <img src='data:image/jpg;base64, " .base64_encode($row['prodImg']). "' class='img-fluid' style='margin: auto; padding-top: 20px; padding-bottom: 20px;'>
@@ -130,11 +129,117 @@ session_start();
          </div>";
 
           }
-          if (++$counter == 6){ break;}
+          if (++$counter == 4){ break;}
            };
            mysqli_close($conn);
        ?>
      </div>
+
+     <h1 id="underMainHeadings" style="padding-top: 4%">Featured Products</h1>
+     <div class="row justify-content-center">
+      <?php
+      require_once ("backend/connDB.php");
+
+      // create new object conn. Calls new instance of mysqli function, using values from loginDB
+      $conn = mysqli_connect($hostName, $username, $password, $databaseName);
+      // connect_error is a property of the conn object, if it has a value, the die function is called to terminate the program
+       if($conn->connect_error) {
+         // the error is not written to console after dev is completed, because can give hackers information in certain circumstances
+         die("Fatal Error");
+       };
+
+      $counter = 0;
+      $productInfo = "SELECT * FROM product ORDER BY prodprice DESC";
+      $result = mysqli_query($conn, $productInfo);
+
+          foreach($result as $row){
+            echo  "
+
+            <div class='col-sm-12 col-md-6 col-lg-3 p-2' >
+               <a href='productScreen.php?id= " .$row['productID']. "' style='text-decoration:none;'>
+            <div class='card h-100 text-center'>
+                  <img src='data:image/jpg;base64, " .base64_encode($row['prodImg']). "' class='img-fluid' style='margin: auto; padding-top: 20px; padding-bottom: 20px;'>
+            <div class='card-body' style='background-color: #f7f7f8; padding: 1rem;'>
+            <h5 class='card-title p-2 h-25' style='font-size: 16px; color:#596e79'>" .$row['productName']. "</h5>
+            <br />
+
+            <p class='card-text' style='color:#596e79'><strong>R" .$row['prodprice']. "</strong></p>
+             <div class='card-footer '>";
+
+             if (isset($_SESSION['login']) && $_SESSION['login'] === true){
+               echo "
+               <form method='post' action='backend/addToCart.php?id= " .$row['productID']. "'>
+               <button name='submit' value='submit' type='submit' class='btn btn-primary' id='cartButton'>Add to Cart &nbsp;<i class='fas fa-shopping-cart'></i></button></form></div>
+                    </div>
+              </div>
+              </a>
+              </div>";
+             }else{
+             echo "
+             <script type='text/javascript'> function JSalert() {
+               alert('Please sign up/login before adding items to cart');
+             }
+              </script>
+             <button onclick='event.preventDefault(), JSalert()' class='btn btn-primary' id='cartButton'>Add to Cart &nbsp;<i class='fas fa-shopping-cart'></i></button></div>
+                  </div>
+            </div>
+            </a>
+            </div>";
+
+             }
+             if (++$counter == 4){ break;}
+              };
+              mysqli_close($conn);
+          ?>
+        </div>
+
+
+        <div class="container" id="supportSection">
+          <div class="row justify-content-center text-center">
+            <div class="col-sm-12 col-md-3">
+
+              <i class="fas fa-shield-alt fa-3x"></i>
+            </div>
+            <div class="col-sm-12 col-md-3 ">
+
+              <i class="fas fa-certificate fa-3x"></i>
+            </div>
+            <div class="col-sm-12 col-md-3">
+
+              <i class="fas fa-truck fa-3x"></i>
+            </div>
+            <div class="col-sm-12 col-md-3 ">
+
+            <i class="fas fa-envelope-open-text fa-3x"></i>
+            </div>
+          </div>
+          <div class="row justify-content-center text-center" style="padding-top:2%">
+            <div class="col-sm-12 col-md-3">
+              <p>Safe and secure payments through payfast!</p>
+
+            </div>
+            <div class="col-sm-12 col-md-3 ">
+              <p>An inventory of products hand-picked by a practising play therapist</p>
+
+            </div>
+            <div class="col-sm-12 col-md-3">
+                <p>Delivery within 7 days!</p>
+
+            </div>
+            <div class="col-sm-12 col-md-3 ">
+              <p> We'd love to hear from you! Send us a message if you have any questions.</p>
+
+            </div>
+          </div>
+
+        </div>
+
+
+
+
+
+
+
   </div>
   </div>
 

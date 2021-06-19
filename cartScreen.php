@@ -115,7 +115,8 @@ session_start();
         }
         ?>
         <?php  if(isset($_SESSION['totalCart']) && $_SESSION['totalCart'] > 0){
-            echo "<button class='btn btn-primary' id='cartButtonRedirect'>Place Order</button>";
+            echo "  <form method='post' action='backend/order.php?'>
+              <button name='submit' value='submit' type='submit' class='btn btn-primary' id='cartButtonRedirect'>Place Order</button></form>";
         }else{
           echo "<button class='btn btn-primary' id='alertEmpty'>Place Order</button>";
 

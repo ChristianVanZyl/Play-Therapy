@@ -41,7 +41,7 @@
         </a>
         <div class='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>
         <a class='dropdown-item' href='profileScreen.php'>Profile</a>
-        <a class='dropdown-item' href='orderListScreen.php'>My Orders</a>
+        <a class='dropdown-item' href='profileOrderScreen.php'>My Orders</a>
         <a class='dropdown-item' href='backend/signOut.php'>Sign Out</a>
         </div>
             </li>";}

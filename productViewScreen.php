@@ -55,7 +55,7 @@ session_start();
   <div class="container-fluid" id="productContainer">
 
 
-    <h6>New Releases</h6>
+
     <div class="row justify-content-center">
      <?php
      require_once ("backend/connDB.php");
@@ -67,62 +67,69 @@ session_start();
         die("Fatal Error");
       };
 
-     $counter = 0;
-     $productInfo = "SELECT productID, categoryID, productName, prodType, prodprice, prodQuantity, prodImg FROM product";
-     $result = mysqli_query($conn, $productInfo);
+      $counter = 0;
 
-         foreach($result as $row){
-           echo  "<div class='col-sm-12 col-md-6 col-lg-3 p-2' align='center'>
-           <a href='productScreen.php?id= " .$row['productID']. "' style='text-decoration:none;' >
-           <div class='card h-100 text-center' >
-                 <img src='data:image/jpg;base64, " .base64_encode($row['prodImg']). "' class='card-img-top' style='margin: auto; padding-top: 20px; padding-bottom: 20px;'>
-                 <div class='card-body' style='background-color: #f7f7f8; padding: 1rem;'>
-                 <h5 class='card-title p-2 h-25' style='font-size: 16px; color:#596e79'>" .$row['productName']. "</h5>
-                 <br />
-           <p class='card-text' style='color:#596e79'><strong>R" .$row['prodprice']. "</strong></p>
-            <div class='card-footer '>";
-            if (isset($_SESSION['login']) && $_SESSION['login'] === true){
-              echo "
-              <form method='post' action='backend/addToCart.php?id= " .$row['productID']. "'>
-              <button name='submit' value='submit' type='submit' class='btn btn-primary' id='cartButton'>Add to Cart &nbsp;<i class='fas fa-shopping-cart'></i></button></form></div>
-                   </div>
-             </div>
-             </a>
-             </div>";
-            }else{
-            echo "
-            <script type='text/javascript'> function JSalert() {
-              alert('Please sign up/login before adding items to cart');
-            }
-             </script>
-            <button onclick='event.preventDefault(), JSalert()' class='btn btn-primary' id='cartButton'>Add to Cart &nbsp;<i class='fas fa-shopping-cart'></i></button></div>
-                 </div>
-           </div>
-           </a>
-           </div>";
+      if (isset ($_GET['page']) ) {
+        $page = $_GET['page'];
+      } else {
+        $page = 1;
+      }
+      $limit = 8;
+      $offset = ($page - 1) * $limit;
+      $amountOfProducts = "SELECT COUNT(productID) FROM product";
+      $resultSet = mysqli_query($conn, $amountOfProducts);
+      $totalRows = mysqli_fetch_array($resultSet)[0];
+      $totalPagesNeeded = ceil($totalRows/$limit);
 
-            }
-             };
-             mysqli_close($conn);
+      $productInfo = "SELECT * FROM product LIMIT $offset, $limit";
+      $result = mysqli_query($conn, $productInfo);
+
+      while($row = mysqli_fetch_array($result)){
+        echo  "<div class='col-sm-12 col-md-4 col-lg-3  p-2' align='center'>
+        <a href='productScreen.php?id= " .$row['productID']. "' style='text-decoration:none;' >
+        <div class='card h-100 text-center' >
+              <img src='data:image/jpg;base64, " .base64_encode($row['prodImg']). "' class='card-img-top' style='margin: auto; padding-top: 20px; padding-bottom: 20px;'>
+              <div class='card-body' style='background-color: #f7f7f8; padding: 1rem;'>
+              <h5 class='card-title p-2 h-25' style='font-size: 16px; color:#596e79'>" .$row['productName']. "</h5>
+              <br />
+        <p class='card-text' style='color:#596e79'><strong>R" .$row['prodprice']. "</strong></p>
+         <div class='card-footer '>";
+         if (isset($_SESSION['login']) && $_SESSION['login'] === true){
+           echo "
+           <form method='post' action='backend/addToCart.php?id= " .$row['productID']. "'>
+           <button name='submit' value='submit' type='submit' class='btn btn-primary' id='cartButton'>Add to Cart &nbsp;<i class='fas fa-shopping-cart'></i></button></form></div>
+                </div>
+          </div>
+          </a>
+          </div>";
+         }else{
+         echo "
+         <script type='text/javascript'> function JSalert() {
+           alert('Please sign up/login before adding items to cart');
+         }
+          </script>
+         <button onclick='event.preventDefault(), JSalert()' class='btn btn-primary' id='cartButton'>Add to Cart &nbsp;<i class='fas fa-shopping-cart'></i></button></div>
+              </div>
+        </div>
+        </a>
+        </div>";
+
+         }
+          }
+          mysqli_close($conn);
          ?>
+         <div class="container" style="padding-top: 5%; padding-bottom: 5%;" >
+           <nav aria-label="pageNav">
+           <ul class="pagination pagination-lg justify-content-center" >
+             <li class="page-item"><a class="page-link" href="<?php if($page <= 1){ echo '#'; } else { echo "?page=".($page - 1); } ?>" id="pageNav">Previous</a></li>
+             <li class="page-item"><a class="page-link" href="<?php if($page >= $totalPagesNeeded){ echo '#'; } else { echo "?page=".($page + 1); } ?>" id="pageNav">Next</a></li>
+           </ul>
+         </nav>
+         </div>
+
+
        </div>
-
     </div>
-
-    <nav aria-label="Page navigation example">
-      <ul class="pagination justify-content-center">
-        <li class="page-item disabled">
-          <a class="page-link" href="#" tabindex="-1">Previous</a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#">Next</a>
-        </li>
-      </ul>
-    </nav>
-
 </div>
 <!--  Page container end-->
 <?php

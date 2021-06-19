@@ -32,11 +32,11 @@ if (isset($_SESSION["admin"])) {
   <!--  CSS -->
   <link rel="stylesheet" href="css/styles.css" />
 </head>
-<body>
+<body id="adminBody">
   <!--  Header code inserted below-->
   <div class="fixed-top">
-    <nav class="navbar navbar-expand-lg" id= "navbarAdmin">
-      <a class="navbar-brand" href="admin.php"><img id="playLogo" src="./images/logo.png" alt="playLogo" width="170" height="100" /><span>PLAY THERAPY TOYS <b>by Lenka De Villiers-Van Zyl</b></span>
+    <nav class="navbar navbar-expand-lg" id= "navbarAdmin" >
+      <a class="navbar-brand" href="admin.php"><img id="playLogo" src="images/logo.png" alt="playLogo" width="170" height="100" /><span>PLAY THERAPY TOYS <b>by Lenka De Villiers-Van Zyl</b></span>
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -45,14 +45,14 @@ if (isset($_SESSION["admin"])) {
       <!-- Header links -->
       <div class="collapse navbar-collapse mr-auto" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="editAccounts.php">Edit Accounts</a>
-          </li>
           <li class="nav-item ">
             <a class="nav-link" href="editProducts.php">Edit Products</a>
           </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="editAccounts.php">Edit Accounts</a>
+          </li>
           <li class='nav-item'>
-            <a class='nav-link' href='../backend/signOut.php'>Sign Out</a>
+            <a class='nav-link' href='backend/signOut.php'>Sign Out</a>
           </li>
         </ul>
       </div>
@@ -60,17 +60,52 @@ if (isset($_SESSION["admin"])) {
   </div>
 
   <!-- Page container -->
-  <div class="container-fluid">
+  <div class="adminContainer">
 
-
-      </div>
+    <div class="adminborder">
     </div>
+        <div class="container-fluid">
+          <div class="row justify-content-center" >
+            <div class="col">
+            <div>
+              <h1 class="adminHeadings">ORDERS</h1>
+            </div>
+              </div>
+          </div>
+            <div class="row  justify-content-center" >
+            <div class="col-6-auto">
+                <a class="btn btn-secondary btn-md" href="admin.php" role="button" id="backButton"> < BACK</a>
+            </div>
+            <div class="col-6-auto">
+            </div>
+            </div>
+        </div>
+  </div>
+  <div class="table-responsive-xs">
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Order ID</th>
+        <th scope="col">AccountID</th>
+        <th scope="col">Order Price</th>
+        <th scope="col">Date</th>
+        <th scope="col">Delivered</th>
+        <th scope="col">Change Delivery Status</th>
+      </tr>
+    </thead>
+    <tbody>
+    <?php
+    require_once ("backend/adminOrders.php");
+    ?>
+    </tbody>
+  </table>
+</div>
 
-    <!--  Bootstrap and own scripts-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script src="index.js" charset="utf-8"></script>
+<!--  Bootstrap and own scripts-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="index.js" charset="utf-8"></script>
 </body>
 
 </html>

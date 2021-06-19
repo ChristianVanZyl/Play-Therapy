@@ -34,109 +34,178 @@ session_start();
   <nav aria-label="breadcrumb" id="breadCustom">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="/" id="breadLink">Home</a></li>
-      <li class="breadcrumb-item active" aria-current="page" style="color: #95ab9e">Cart</li>
+        <li class="breadcrumb-item"><a href="cartScreen.php" id="breadLink">Cart</a></li>
+        <li class="breadcrumb-item"><a href="shippingScreen.php" id="breadLink">Shipping</a></li>
+      <li class="breadcrumb-item active" aria-current="page" style="color: #95ab9e">Check Out</li>
     </ol>
   </nav>
 </div>
 <div class='prodMainunderlineDiv'>  </div>
 
- <div class="container-fluid" style="padding-top: 7%; padding-left: 15%; padding-right: 15%; padding-bottom: 20%;">
 
-  <table class='table table-responsive-xs' id="tableContainerCart" >
-    <thead style="border-top: hidden;">
-      <tr id='tableCartHeadings' >
-        <th scope='col'>Product Name</th>
-        <th scope='col'>Category</th>
-        <th scope='col'>Quantity</th>
-        <th scope='col'>Price</th>
-        <th scope='col'>Remove</th>
-      </tr>
-    </thead>
-   <?php
-   // require once so that file is read once and not multiple times, prevent wasteful multiple disk access
-   require_once ("backend/connDB.php");
+ <div class="container-fluid" style="padding-top: 7%; padding-left: 10%; padding-right: 10%; padding-bottom: 5%; ">
 
 
-   // create new object conn. Calls new instance of mysqli function, using values from loginDB
-   $conn = mysqli_connect($hostName, $username, $password, $databaseName);
-   // connect_error is a property of the conn object, if it has a value, the die function is called to terminate the program
-    if($conn->connect_error) {
-      // the error is not written to console after dev is completed, because can give hackers information in certain circumstances
-      die("Fatal Error");
-  };
+ <div class="row">
+   <div class="col-sm-12 col-md-4">
+   </div>
+   <div class="col-sm-12 col-md-6">
 
-  if(isset($_SESSION['cart'])) {
-    $_SESSION['totalCart'] = 0;
-  foreach ($_SESSION['cart'] as $prodID){
+    <h6 style="text-align: left; font-size: 20px; padding-bottom: 5%;">Order Details:</h6>
 
-  $productInfo = "SELECT * FROM product WHERE productID = $prodID";
-  $result = $conn->query($productInfo);
+          <div class="container-fluid">
+           <div class="row" style="margin-left: 0; margin-right">
 
-  while($row = $result->fetch_assoc()) {
-    if($row['categoryID'] === 1)
-    {
-      $insertType = "Toys";
-    }else{
-      $insertType = "Books";;
-    }
+             <div class="col-sm-12" style="margin: 0 !important;padding: 0 !important;">
 
-    if($row['prodQuantity'] === 0)
-    {
-      $insertStock = "Out of Stock";
-    }else {
-      $insertStock = 1;
-      $_SESSION['totalCart'] = $_SESSION['totalCart'] + $row['prodprice'];
-    }
+     <?php
 
-    echo  "
-         <tbody>
-           <tr id='tableCartText'>
-             <td>" .$row['productName']. "&nbsp;&nbsp;&nbsp;  <img src='data:image/jpg;base64, " .base64_encode($row['prodImg']). "' style='width: 50px; height: 50px;' ></td>
-             <td>" .$insertType. "</td>
-                <td>$insertStock</td>
-             <td>R" .$row['prodprice']. "</td>
-             <td><a href='backend/removeFromCart.php?id= " .$row['productID']. "' style='text-decoration:none; color: red'><i class='fas fa-trash '></i></a></td>
-           </tr>
-         </tbody>
-";
+     // require once so that file is read once and not multiple times, prevent wasteful multiple disk access
+     require_once ("backend/connDB.php");
+
+     // create new object conn. Calls new instance of mysqli function, using values from loginDB
+     $conn = mysqli_connect($hostName, $username, $password, $databaseName);
+     // connect_error is a property of the conn object, if it has a value, the die function is called to terminate the program
+      if($conn->connect_error) {
+        // the error is not written to console after dev is completed, because can give hackers information in certain circumstances
+        die("Fatal Error");
+      };
+
+      if(isset($_SESSION['uid'])) {
+          $id = $_SESSION['uid'];
+      }
+      else {
+          echo "Index not present";
+      }
+
+     $accountInfo = "SELECT accountEmail FROM account WHERE accountID = $id";
+     $result = $conn->query($accountInfo);
+
+     if(mysqli_num_rows($result) == 0) {
+
+     echo "<script type='text/javascript'>alert('Account ID not found.');
+
+     </script>";
+
+     }else{
+
+         $row = mysqli_fetch_array($result);
+         $accountEmail = $row['accountEmail'];
+       }
+
+
+       $orderItemIDInfo = "SELECT orderID FROM ordertransaction WHERE accountID = $id";
+       $result = $conn->query($orderItemIDInfo);
+
+       if(mysqli_num_rows($result) == 0) {
+
+       echo "<script type='text/javascript'>alert('Order ID not found.');
+
+       </script>";
+
+       }else{
+
+         $numResults = mysqli_num_rows($result);
+         $counter = 0;
+         while ($row = $result->fetch_assoc()) {
+             if (++$counter == $numResults) {
+                 $orderID = $row['orderID'];
+             }
+         }
+         }
+
+         $orderDate = date('Y-m-d');
+
+    echo "<p class='orderScreenTitles'><span style='font-weight: 700'>Account:</span> " .$accountEmail. "</p>";
+    echo "<p class='orderScreenTitles'><span style='font-weight: 700'>Product(s):</span></p>";
+
+     if(isset($_SESSION['cart'])) {
+       $_SESSION['totalCart'] = 0;
+     foreach ($_SESSION['cart'] as $prodID){
+
+     $productInfo = "SELECT * FROM product WHERE productID = $prodID";
+     $result = $conn->query($productInfo);
+
+     while($row = $result->fetch_assoc()) {
+
+
+       if($row['prodQuantity'] === 0)
+       {
+         $insertStock = "Out of Stock";
+       }else {
+         $insertStock = 1;
+         $_SESSION['totalCart'] = $_SESSION['totalCart'] + $row['prodprice'];
+       }
+
+        echo"  <p class='orderScreenTitles'><span style='font-weight: 700' >" .$row['productName']. "&nbsp;&nbsp;&nbsp;  <img src='data:image/jpg;base64, " .base64_encode($row['prodImg']). "' style='width: 50px; height: 50px;' ></p>";
+
+     }
+
+   }
+     echo "<p class='orderScreenTitles'><span style='font-weight: 700'>Total:</span> R" .$_SESSION['totalCart']. "</p>";
+
+     // in order for payfast to redirect after payment to your website during development, it is needed to change the index.php file in the htdocs folder of your xampp folder
+     // the header location needs to be changed to the folder of the project in htdocs' name and you need to set the page it directs you to
+     // this is what should be changed in the header location       header('Location: '.$uri.'/playtherapy/index.php');
+
+     echo"
+     <div class='container-fluid' style='padding-top: 2%'>
+     <form action='https://sandbox.payfast.co.za/eng/process' name='form_c741fd0b9c9c00c2b842839588803224' onsubmit='return click_c741fd0b9c9c00c2b842839588803224( this );' method='post'>
+        <input type='hidden' name='cmd' value='_paynow'>
+        <input type='hidden' name='receiver' value='10022985'>
+        <input type='hidden' name='item_name' value='Play Therapy Products'>
+        <input type='hidden' name='amount' value= '" .$_SESSION['totalCart']. "'>
+        <input type='hidden' name='item_description' value='Play Therapy Products'>
+        <input type='hidden' name='return_url' value='http://www.localhost/'>
+        <table>
+        <tr><td><font color='red'>*</font>&nbsp;Price</td><td><input type='text' name='custom_amount' class='pricing' value='" .$_SESSION['totalCart']. "'></td></tr>
+        <tr><td colspan=2 align=center style='padding-top: 8%; '><input type='image' src='https://www.payfast.co.za/images/buttons/light-large-paynow.png' width='174' height='59'  alt='Pay Now' style='margin-right: 15%' title='Pay Now with PayFast'></td></tr></table>
+      </form>
+   </div>
+      ";
+}
+
+
+if(isset($_SESSION['cart'])) {
+
+foreach ($_SESSION['cart'] as $prodID){
+
+$productInfo = "SELECT prodQuantity FROM product WHERE productID = $prodID";
+$result = $conn->query($productInfo);
+
+while($row = $result->fetch_assoc()) {
+
+  $productQ = $row['prodQuantity'] - 1;
+  $updateProductQuantity = "UPDATE product SET prodQuantity = '$productQ' WHERE productID = $prodID";
+  if(mysqli_query($conn, $updateProductQuantity )){
   }
-}}
-?>
+}
+}
+}
+$_SESSION['cartQuantity']= 0;
+$_SESSION['totalCart'] = 0;
+$_SESSION['cart']= [];
 
-</table>
+mysqli_close($conn);
+exit;
 
-<div class="row">
-  <div class="col">
-
-      <div class="placeorder">
-        <?php
-        if(isset($_SESSION['totalCart'])){
-          echo "<h1 id='totalHeading'>TOTAL: R" .$_SESSION['totalCart']. "</h1>";
-        }
-        ?>
-        <?php  if(isset($_SESSION['totalCart']) && $_SESSION['totalCart'] > 0){
-            echo "<button class='btn btn-primary' id='cartButtonRedirect'>Place Order</button>";
-        }else{
-          echo "<button class='btn btn-primary' id='alertEmpty'>Place Order</button>";
-
-        }
-
-
-?>
-          </div>
-
-
-  </div>
+  ?>
+ </div>
 </div>
 </div>
 
+ </div>
+ <div class="col-sm-12 col-md-4">
+ </div>
+</div>
+
+</div>
 
 <?php
 require_once ("footer.php");
 ?>
 
 <!--  Page container end-->
-
 <!--  Bootstrap and own scripts-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

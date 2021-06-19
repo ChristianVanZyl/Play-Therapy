@@ -1,9 +1,4 @@
-// const searchButton = document.getElementById("search-button");
-// const searchInput = document.getElementById("search-input");
-// searchButton.addEventListener("click", () => {
-//   const inputValue = searchInput.value;
-//   alert(inputValue);
-// });
+// variables created for use in the rest of the code
 
 const email = document.getElementById("inputEmail");
 const password = document.getElementById("inputPassword");
@@ -85,7 +80,7 @@ function passwordCheck() {
   return result;
 }
 
-// basic is empty field checks
+// basic check if field is empty or not
 function streetCheck() {
   if (street.value != empty) {
     street.classList.remove("is-invalid");
@@ -246,7 +241,9 @@ function imgCheck() {
 }
 
 //        Contact Screen functions              //
-
+// subjectHeaderCheck checks if the subject field of the contact screen has been filled in
+// after the user has clicked submit
+// the messageEmpty check in turn checks whether the text field is empty or not
 function subjectHeaderCheck() {
   if (subject.value != empty) {
     subject.classList.remove("is-invalid");
@@ -270,29 +267,115 @@ function messageEmptyCheck() {
   }
   return result;
 }
-
+// contactSubmitHandler checks all the input fields and puts them through validation tests
 function contactSubmitHandler() {
   emailCheck() && subjectHeaderCheck() && messageEmptyCheck();
 
   return result;
 }
+
 //        Cart  Screen functions              //
+// this is an event listener for activating a redirect function to a php page
+// adding a product to the cart
 const redirect = document.getElementById("cartButtonRedirect");
 if (redirect) {
   redirect.addEventListener("click", reDirectCart, false);
 }
-
-function reDirectCart() {
-  location.href = "paymentScreen.php";
-}
-
+// eventlistener attached to button alerting the user that their cart is empty
 const cartEmpty = document.getElementById("alertEmpty");
 if (cartEmpty) {
   cartEmpty.addEventListener("click", cartEmptyMessage, false);
 }
-
+// function alerting user that their cart is empty
 function cartEmptyMessage() {
   alert(
     "Your cart is empty. Please fill your cart with at least one item before checking out"
   );
+}
+
+//        Shipping Screen functions              //
+// shippingSubmitHandler checks all the input fields and puts them through validation tests
+function shippingSubmitHandler() {
+  streetCheck() && cityCheck() && provinceCheck() && codeCheck();
+  return result;
+}
+
+//        Profile Screen functions              //
+// accountSubmitHandler checks that the user has filled in new password according
+// to the set requirements
+function accountSubmitHandler() {
+  passwordCheck();
+  return result;
+}
+
+// the password inputfield is deactivated until the user clicks on
+// checkIfChangePassword button. When they click on this button,
+// the inputPassword field is changed to active and the changePasswordButton
+// is also changed to an active state
+const checkifchangepassword = document.getElementById("checkIfChangePassword");
+if (checkifchangepassword) {
+  checkifchangepassword.addEventListener("click", enablePasswordButton, false);
+}
+function enablePasswordButton() {
+  document.getElementById("changePasswordButton").disabled = false;
+  document.getElementById("inputPassword").disabled = false;
+}
+
+//        Payfast Api functions              //
+function click_c741fd0b9c9c00c2b842839588803224(aform_reference) {
+  var aform = aform_reference;
+  aform["amount"].value =
+    Math.round(aform["amount"].value * Math.pow(10, 2)) / Math.pow(10, 2);
+  aform["custom_amount"].value = aform["custom_amount"].value.replace(
+    /^\s+|\s+$/g,
+    ""
+  );
+  if (
+    !aform["custom_amount"].value ||
+    0 === aform["custom_amount"].value.length ||
+    /^\s*$/.test(aform["custom_amount"].value)
+  ) {
+    alert("An amount is required");
+    return false;
+  }
+  aform["amount"].value =
+    Math.round(aform["custom_amount"].value * Math.pow(10, 2)) /
+    Math.pow(10, 2);
+  aform["custom_quantity"].value = aform["custom_quantity"].value.replace(
+    /^\s+|\s+$/g,
+    ""
+  );
+  if (
+    !aform["custom_quantity"].value ||
+    0 === aform["custom_quantity"].value.length ||
+    /^\s*$/.test(aform["custom_quantity"].value)
+  ) {
+    alert("A quantity is required");
+    return false;
+  }
+  var cont = true;
+  for (i = 0; i < aform.elements.length; i++) {
+    if (aform.elements[i].className != "shipping") continue;
+
+    if (aform.elements[i].name == "line2") continue;
+
+    if (!cont) continue;
+
+    if (aform.elements[i].name == "country") {
+      if (aform.elements[i].selectedIndex == 0) {
+        cont = false;
+        alert("Select a country");
+      }
+    } else {
+      if (
+        0 === aform.elements[i].value.length ||
+        /^\s*$/.test(aform.elements[i].value)
+      ) {
+        cont = false;
+        alert("Complete all the mandatory address fields");
+      }
+    }
+  }
+  if (!cont) return cont;
+  aform["amount"].value *= parseInt(aform["custom_quantity"].value);
 }

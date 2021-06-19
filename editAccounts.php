@@ -49,7 +49,7 @@ if (isset($_SESSION["admin"])) {
             <a class="nav-link" href="editProducts.php">Edit Products</a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="adminViewOrders.php">View Orders</a>
+            <a class="nav-link" href="editAdminOrders.php">View Orders</a>
           </li>
           <li class='nav-item'>
             <a class='nav-link' href='backend/signOut.php'>Sign Out</a>
